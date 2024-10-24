@@ -1,0 +1,24 @@
+{%  extends "blog/base.html" %}
+
+{% block title %}{{ post.title }} - Meu Blog{% endblock %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p>Publicado em: {{ post.created_at|date:"d M Y" }}</p>
+    <p>{{ post.content }}</p>
+
+    <h2>Comentários</h2>
+        <ul class="list-group">
+            {% for comment in comments %}
+                <li class="list-group-item"> {{ comment.author }}: {{ comment.content }} ({{ comment.created_at|date:"d M Y H:i" }})</li>
+            {% empty %}
+                <li class="list-group-item"> Nenhum comentário ainda</li>
+            {% endfor %}
+        </ul>
+
+    <form method="post" action="">
+    <button type="submit">Adicionar comentario</button>
+    </form>
+
+    <a href="{% url 'lista_posts' %}">Voltar</a>
+{% endblock %}

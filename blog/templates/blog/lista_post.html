@@ -1,0 +1,17 @@
+{%  extends 'blog/base.html' %}
+
+{% block title %} Meu Blog - Todas as postagens {% endblock %}
+
+{% block content %}
+    <h1> Lista de posts</h1>
+    <br>
+    <a href="{% url 'criar_post' %}" class="btn btn-primary">Nova postagem</a>
+    <ul class="list-group">
+        {% for post in posts %}
+        <li class="list-group-item">
+            <a href="{% url 'exibe_post' post.id %}" class="text-decoration-none"> {{ post.title }} </a> - {{ post.created_at|date:"d M Y" }}
+        </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
